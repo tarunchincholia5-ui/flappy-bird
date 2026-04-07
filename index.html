@@ -33,6 +33,19 @@ canvas{display:block;border-radius:0;}
 }
 .screen.hidden{opacity:0;pointer-events:none;}
 
+let audioUnlocked = false;
+
+document.addEventListener("touchstart", unlockAudio, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
+
+function unlockAudio() {
+    if (!audioUnlocked) {
+        const dummy = new Audio();
+        dummy.play().catch(() => {});
+        audioUnlocked = true;
+    }
+}
+
 /* HOME */
 #homeScreen{background:linear-gradient(175deg,#0d1b4b 0%,#1a3a6b 40%,#0d4a3a 100%);}
 .game-title{
